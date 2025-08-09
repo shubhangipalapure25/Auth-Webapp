@@ -4,13 +4,20 @@ import PopupModal from './PopupModal';
 
 export default function HomeDashboard() {
   const {theme, toggleTheme} = useContext(ThemeContext);
-const[isShowPopup, setIsShowPopup] =useState(true);
-const[modalContent, setModalContent] =useState('signup');
+const[isShowPopup, setIsShowPopup] =useState(false);
+const[modalContent, setModalContent] =useState(null);
 
 const handleSignupClick = (content) => {
   setIsShowPopup(true);
   setModalContent(content);
 }
+
+const handleSigninClick = (content) => {
+  setIsShowPopup(true);
+  setModalContent(content);
+}
+
+
 
   return (
     <>
@@ -19,8 +26,9 @@ const handleSignupClick = (content) => {
   <div className='flex flex-row items-center justify-between p-2 px-4 py-4 bg-white rounded-md'>
     <span className='font-bold'>Dashboard</span>
     <div className='flex items-center'>
-      <button className='text-black ml-2 p-1'>Log in</button>
+      <button className='text-black ml-2 p-1' onClick={() => handleSigninClick('signin')}>Log in</button>
       <button className='text-black ml-2 p-1 px-2  border-blue-400 text-blue-400 border-1 rounded-md' onClick={()=> handleSignupClick('signup')}>Sign up</button>
+           <button className='text-black ml-2 p-1' onClick={() => handleSigninClick('resetpassword')}>Reset Password</button>
       <button
       className='ml-4 border p-1 bg-blue-600 text-white rounded-md'
       onClick={toggleTheme}
@@ -39,7 +47,7 @@ const handleSignupClick = (content) => {
   />
  
  {isShowPopup  && (
-    <PopupModal modalContent={modalContent} onClose={() => setIsShowPopup(false)} />
+    <PopupModal modalContent={modalContent} setModalContent={setModalContent} onClose={() => setIsShowPopup(false)} />
   )}
 
 </div>

@@ -1,8 +1,16 @@
-import React from 'react'
+import React,{useState} from 'react'
+import PopupModal from '../components/PopupModal';
 
-export default function SignUp({onClose}) {
+export default function SignUp({onClose, setModalContent}) {
+
+
+  const handleForgotPasswordClick = (content) => {
+    setModalContent(content);
+}
+
   return (
-    <div className="p-8 bg-black text-white flex flex-col justify-center rounded-md w-[400px]">
+    <>
+        <div className="p-8 bg-black text-white flex flex-col justify-center rounded-md w-[400px]">
       <div
         className="text-gray-400 cursor-pointer p-1 hover:text-white self-end"
         onClick={onClose}
@@ -29,10 +37,17 @@ export default function SignUp({onClose}) {
       <button className='bg-blue-400 py-1 px-4 w-full mt-4'>Start your journey</button>
 
       <div className='flex flex-row justify-between mt-4'>
-        <a href='/' className='text-blue-600 text-sm hover:underline'>Sign in with your account</a>
-        <a href='/'  className='text-blue-600 text-sm hover:underline'>Forgot your password?</a>
+        <a href='/' className='text-blue-600 text-sm hover:underline' >Sign in with your account</a>
+      <div
+          className='text-blue-600 text-sm hover:underline cursor-pointer'
+          onClick={() => setModalContent('forgotpassword')}
+        >
+          Forgot your password?
+        </div>
       </div>
       
     </div>
+    
+    </>
   )
 }
